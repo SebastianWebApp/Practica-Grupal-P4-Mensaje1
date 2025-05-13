@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  # Servicio de MySQL
+ 
+  mensaje1:
+    build:
+      context: ./
+    container_name: mensaje1
+    image: sebastianwebapp/practica_grupal_4p_mensaje1:latest
+    ports:
+      - "4000:4000"
+    restart: always
