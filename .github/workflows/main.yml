@@ -63,10 +63,7 @@ jobs:
     container: ghcr.io/railwayapp/cli:latest
     env:
       RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      RAILWAY_PROJECT_ID: e8eced8b-a81b-4dc6-a7cd-80cc70efe575
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Deploy with Railway CLI
-        run: railway up --detach
-
+      - uses: actions/checkout@v3
+      - run: railway up --project $RAILWAY_PROJECT_ID --detach
