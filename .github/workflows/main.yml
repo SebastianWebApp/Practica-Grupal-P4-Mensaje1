@@ -51,7 +51,9 @@
 #           echo "Verificando imágenes enviadas a DockerHub:"
 #           docker-compose -f docker-compose.yml images
 
-name: Deploy Railway Project with Multiple Services
+
+
+name: Deploy to Railway
 
 on:
   push:
@@ -62,20 +64,8 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/railwayapp/cli:latest
     env:
-      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-      RAILWAY_PROJECT: e8eced8b-a81b-4dc6-a7cd-80cc70efe575
+      RAILWAY_TOKEN: $RAILWAY_TOKEN
+      RAILWAY_PROJECT: $RAILWAY_PROJECT
     steps:
       - uses: actions/checkout@v3
-      
-      - name: Deploy Service 1
-        run: |
-          railway login --apiKey $RAILWAY_TOKEN
-          railway use $RAILWAY_PROJECT
-          railway up --service service1-name-or-id --detach
-
-      - name: Deploy Service 2
-        run: |
-          railway login --apiKey $RAILWAY_TOKEN
-          railway use $RAILWAY_PROJECT
-          railway up --service service2-name-or-id --detach
-
+      - run: railway up --detach
