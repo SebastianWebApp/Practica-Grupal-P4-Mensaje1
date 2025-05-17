@@ -51,26 +51,22 @@
 #           echo "Verificando imágenes enviadas a DockerHub:"
 #           docker-compose -f docker-compose.yml images
 
-
 name: Deploy to Railway
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    container: ghcr.io/railwayapp/cli:latest
+    env:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Deploy to Railway
-        uses: railwayapp/railway-action@v1
-        with:
-          apiKey: ${{ secrets.RAILWAY_TOKEN }}
-          # opcional:
-          # project: your-project-id
-          # environment: production
+      - name: Deploy with Railway CLI
+        run: railway up --detach
 
