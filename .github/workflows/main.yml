@@ -53,6 +53,24 @@
 
 
 
+# name: Deploy to Railway
+
+# on:
+#   push:
+#     branches: [main]
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     container: ghcr.io/railwayapp/cli:latest
+#     env:
+#       RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+#       RAILWAY_PROJECT: ${{ secrets.RAILWAY_PROJECT_ID }}
+#     steps:
+#       - uses: actions/checkout@v3
+#       - run: railway up --detach
+
+
 name: Deploy to Railway
 
 on:
@@ -68,4 +86,10 @@ jobs:
       RAILWAY_PROJECT: ${{ secrets.RAILWAY_PROJECT_ID }}
     steps:
       - uses: actions/checkout@v3
-      - run: railway up --detach
+      
+      - name: Deploy Service 1
+        run: railway up --service servicio1 --detach
+        
+      - name: Deploy Service 2
+        run: railway up --service servicio2 --detach
+
