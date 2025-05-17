@@ -62,8 +62,8 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/railwayapp/cli:latest
     env:
-      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-      RAILWAY_PROJECT: 3e53a591-c630-4eaf-8d51-f6f55de566fc
+      RAILWAY_TOKEN: 3e53a591-c630-4eaf-8d51-f6f55de566fc
+      RAILWAY_PROJECT: e8eced8b-a81b-4dc6-a7cd-80cc70efe575
     steps:
       - uses: actions/checkout@v3
       - run: railway up --detach
