@@ -1,7 +1,7 @@
 name: Railway
 
 on:
-  push:
+  pull_request:
     branches:
       - main  # Cambia según sea necesario
 
@@ -61,7 +61,7 @@ jobs:
         - uses: actions/checkout@v3
         
         - name: Deploy Servidor
-          run: railway up --service servidor1 --detach
+          run: railway up --service prueba1 --detach
 
 
 
