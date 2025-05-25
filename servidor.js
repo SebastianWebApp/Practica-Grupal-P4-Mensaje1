@@ -18,7 +18,7 @@ app.use(json());
 app.get("/", (req, res) => {
     res.status(200).json({
             Estado: 200,
-            Respuesta: "Servidor 1: Railway 10",
+            Respuesta: "Servidor 1: Railway",
         });
 });
 
